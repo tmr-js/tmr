@@ -8,6 +8,12 @@ function printErrorWarning(stat: webpack.Stats): void {
 
 function getServerConfig(): webpack.Configuration {
   const baseDir = process.cwd();
+  const defaultLoader = {
+    loader: "babel-loader",
+    options: {
+      presets: [[require("@babel/preset-react"), { development: false }]],
+    },
+  };
   return {
     entry: {
       // TODO detect entry points directly.
@@ -24,6 +30,23 @@ function getServerConfig(): webpack.Configuration {
     externals: {
       // TODO use webpack-node-externals
       express: "commonjs express",
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(tsx|ts|js|mjs|jsx)$/,
+          include: [baseDir],
+          exclude: (path: string) => {
+            return /node_modules/.test(path);
+          },
+          use: [defaultLoader],
+        },
+      ],
+    },
+    resolveLoader: {
+      alias: {
+        "babel-loader": `${baseDir}/node_modules/@tmr/tmr/node_modules/babel-loader/`,
+      },
     },
   };
 }
