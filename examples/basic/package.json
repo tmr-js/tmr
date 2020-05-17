@@ -1,11 +1,14 @@
 {
   "name": "basic",
   "version": "0.0.0",
+  "main": "app.js",
   "scripts": {
-    "build": "tmr build"
+    "build": "tmr build",
+    "start": "tmr start"
   },
   "private": true,
   "dependencies": {
-    "@tmr/tmr": "*"
+    "@tmr/tmr": "*",
+    "express": "^4.17.1"
   }
 }
