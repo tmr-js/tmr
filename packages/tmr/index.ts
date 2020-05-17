@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
-const start = require("./start");
+import start from "./start";
+
+process.on("uncaughtException", function (err) {
+  console.log("Caught exception: " + err);
+});
 
 function printUsage() {
   console.error("Usage: tmr <command>");
@@ -11,19 +15,18 @@ if (process.argv.length < 3) {
   printUsage();
 }
 
-const commandMapping = {
+const CommandMapping = {
   start,
 };
 
 const command = process.argv[2];
 
-if (Object.keys(commandMapping).indexOf(command) < 0) {
+const commandFunction = (CommandMapping as any)[command];
+
+if (typeof commandFunction === "function") {
+  commandFunction();
+} else {
   console.error(`Command "${command}" not found.`);
   printUsage();
 }
 
-process.on("uncaughtException", function (err) {
-  console.log("Caught exception: " + err);
-});
-
-commandMapping[command]();
