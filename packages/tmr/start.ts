@@ -3,7 +3,7 @@
  */
 
 function start(args: string[]) {
-  const defaultScript = "./app.js";
+  const defaultScript = "./build/app.js";
   const script = args.length > 0 ? args[0] : defaultScript;
   require(`${process.cwd()}/${script}`);
 }
