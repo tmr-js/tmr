@@ -1,0 +1,11 @@
+{
+  "name": "basic",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tmr build"
+  },
+  "private": true,
+  "dependencies": {
+    "@tmr/tmr": "*"
+  }
+}
