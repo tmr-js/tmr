@@ -2,20 +2,10 @@
  * Start the application.
  */
 
-import child_process from "child_process";
-
-function start() {
-  const app = child_process.exec("node app.js");
-  if (app.stdout) {
-    app.stdout.on("data", (data) => {
-      console.log(data);
-    });
-  }
-  if (app.stderr) {
-    app.stderr.on("data", (data) => {
-      console.error(data);
-    });
-  }
+function start(args: string[]) {
+  const defaultScript = "./app.js";
+  const script = args.length > 0 ? args[0] : defaultScript;
+  require(`${process.cwd()}/${script}`);
 }
 
 export default start;
