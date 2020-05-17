@@ -16,9 +16,15 @@ function getServerConfig(): webpack.Configuration {
     output: {
       path: `${baseDir}/build`,
     },
-    name: 'server',
-    mode: 'production',
-    target: 'node',
+    mode: "production",
+    target: "node",
+    resolve: {
+      extensions: [".js", ".jsx"], // TODO: support ".mjs", ".tsx", ".ts", ".json", ".wasm"
+    },
+    externals: {
+      // TODO use webpack-node-externals
+      express: "commonjs express",
+    },
   };
 }
 
