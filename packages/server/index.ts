@@ -1,5 +1,6 @@
-import * as http from 'http';
-import {renderToString} from "react-dom/server";
+import * as http from "http";
+// import { renderToString } from "react-dom/server";
+import render from './render'
 
 type SendArguments = {
   req: http.IncomingMessage;
@@ -7,7 +8,8 @@ type SendArguments = {
   component: any;
 };
 
-export function send({req, res, component} : SendArguments) {
-    res.write(renderToString(component));
-    res.end();
+export function send({ req, res, component }: SendArguments) {
+  console.log('component', component)
+  res.write(render({}));
+  res.end();
 }
