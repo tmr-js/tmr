@@ -1,5 +1,8 @@
+import { send } from "@tmr/server";
+
 const tmr = {
-    createElement: () => 0
+  send,
+  createElement: () => 0,
 };
 
 export = tmr;

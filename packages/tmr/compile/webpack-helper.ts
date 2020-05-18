@@ -1,4 +1,5 @@
 import webpack from "webpack";
+import {resolve} from "path";
 
 function printErrorWarning(stat: webpack.Stats): void {
   const { errors, warnings } = stat.toJson("errors-warnings");
@@ -18,8 +19,8 @@ function getServerConfig(): webpack.Configuration {
             // If classic runtime is no longer supported, we need
             // to create our own babel-plugin-transform-react-jsx
             runtime: "classic",
-            pragma: "tmr.createElement",
-            pragmaFrag: "tmr.Fragment",
+            // pragma: "tmr.createElement",
+            // pragmaFrag: "tmr.Fragment",
           },
         ],
       ],
@@ -28,19 +29,23 @@ function getServerConfig(): webpack.Configuration {
   return {
     entry: {
       // TODO detect entry points directly.
-      app: `${baseDir}/app.js`,
+      app: resolve(baseDir, 'app.js'),
     },
     output: {
-      path: `${baseDir}/build`,
+      path: resolve(baseDir, '.tmr'),
     },
-    mode: "production",
+    mode: "development", // do not minify app.js for development
     target: "node",
     resolve: {
       extensions: [".js", ".jsx"], // TODO: support ".mjs", ".tsx", ".ts", ".json", ".wasm"
+      alias: {
+        // "@tmr/server": resolve(__dirname, "../../node_modules/@tmr/server/"),
+      }
     },
     externals: {
       // TODO use webpack-node-externals
       express: "commonjs express",
+      "@tmr/tmr": "commonjs @tmr/tmr"
     },
     module: {
       rules: [
@@ -56,7 +61,7 @@ function getServerConfig(): webpack.Configuration {
     },
     resolveLoader: {
       alias: {
-        "babel-loader": `${baseDir}/node_modules/@tmr/tmr/node_modules/babel-loader/`,
+        "babel-loader": resolve(__dirname, "../../node_modules/babel-loader/"),
       },
     },
   };
