@@ -59,7 +59,7 @@ function serverConfig(): webpack.Configuration {
     },
     resolveLoader: {
       alias: {
-        "babel-loader": resolve(__dirname, "../../../node_modules/babel-loader/"),
+        "babel-loader": resolve(__dirname, "../../../../node_modules/babel-loader/"),
       },
     },
   };

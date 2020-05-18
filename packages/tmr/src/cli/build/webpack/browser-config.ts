@@ -14,7 +14,8 @@ function serverConfig(): webpack.Configuration {
         [
           require("@babel/preset-react"),
           {
-            runtime: "automatic",
+            // TODO we might be able to use automatic runtime.
+            runtime: "classic",
           },
         ],
       ],
@@ -23,6 +24,7 @@ function serverConfig(): webpack.Configuration {
   return {
     entry: {
       // TODO detect entry points directly.
+      init: resolve(__dirname, "../../../browser"),
       HelloComponent: resolve(baseDir, "HelloComponent.jsx"),
     },
     output: {
@@ -33,7 +35,7 @@ function serverConfig(): webpack.Configuration {
     resolve: {
       extensions: [".js", ".jsx"], // TODO: support ".mjs", ".tsx", ".ts", ".json", ".wasm"
       alias: {
-        "babel-loader": resolve(__dirname, "../../../node_modules/@tmr/browser/node_modules/react/"),
+        // "react": resolve(__dirname, "../../../../node_modules/react"),
       },
     },
     externals: {
@@ -53,7 +55,7 @@ function serverConfig(): webpack.Configuration {
     },
     resolveLoader: {
       alias: {
-        "babel-loader": resolve(__dirname, "../../../node_modules/babel-loader/"),
+        "babel-loader": resolve(__dirname, "../../../../node_modules/babel-loader/"),
       },
     },
   };
