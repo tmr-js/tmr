@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "CommonJS",
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": "../../dist/cli",
+    "declaration": true,
+  },
+  "include": ["**/*"],
+  "exclude": ["dist"]
+}

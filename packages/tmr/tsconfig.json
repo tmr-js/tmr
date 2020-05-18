@@ -1,13 +1,14 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "module": "CommonJS",
-    "target": "ES2017",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "jsx": "react",
-    "outDir": "dist"
-  },
-  "include": ["**/*"],
-  "exclude": ["dist"]
-}
+    "compilerOptions": {
+      "strict": true,
+      "module": "CommonJS",
+      "target": "ES2017",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "outDir": ".",
+      "declaration": true
+    },
+    "include": ["tmr.ts"],
+    "exclude": []
+  }
+  

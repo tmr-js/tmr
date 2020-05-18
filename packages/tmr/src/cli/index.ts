@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import start from "./start";
-import build from "./compile";
+import build from "./build";
 
 process.on("uncaughtException", function (err) {
   console.log("Caught exception: " + err);

@@ -6,9 +6,9 @@
       "esModuleInterop": true,
       "moduleResolution": "node",
       "jsx": "react",
-      "outDir": "dist"
+      "outDir": "../../dist/browser",
+      "declaration": true,
     },
     "include": ["**/*"],
     "exclude": ["dist"]
   }
-  

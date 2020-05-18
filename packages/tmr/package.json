@@ -5,7 +5,11 @@
   "bin": "dist/cli.js",
   "main": "dist/tmr.js",
   "scripts": {
-    "build": "tsc"
+    "build:cli": "cd src/cli && tsc",
+    "build:server": "cd src/server && tsc",
+    "build:browser": "cd src/browser && tsc",
+    "build:tmr": "tsc",
+    "build": "npm run build:cli && npm run build:server && npm run build:browser && npm run build:tmr"
   },
   "author": "",
   "license": "MIT",
@@ -19,6 +23,8 @@
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "typescript": "^3.9.2",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

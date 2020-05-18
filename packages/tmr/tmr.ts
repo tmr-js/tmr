@@ -1,4 +1,4 @@
-import { send } from "@tmr/server";
+import { send } from "./dist/server";
 
 const tmr = {
   send,

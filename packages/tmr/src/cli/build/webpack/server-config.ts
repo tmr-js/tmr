@@ -1,13 +1,11 @@
+/**
+ * Generate server config for webpack.
+ */
+
 import webpack from "webpack";
-import {resolve} from "path";
+import { resolve } from "path";
 
-function printErrorWarning(stat: webpack.Stats): void {
-  const { errors, warnings } = stat.toJson("errors-warnings");
-  console.log(errors);
-  console.log(warnings);
-}
-
-function getServerConfig(): webpack.Configuration {
+function serverConfig(): webpack.Configuration {
   const baseDir = process.cwd();
   const defaultLoader = {
     loader: "babel-loader",
@@ -29,10 +27,10 @@ function getServerConfig(): webpack.Configuration {
   return {
     entry: {
       // TODO detect entry points directly.
-      app: resolve(baseDir, 'app.js'),
+      app: resolve(baseDir, "app.js"),
     },
     output: {
-      path: resolve(baseDir, '.tmr'),
+      path: resolve(baseDir, ".tmr"),
     },
     mode: "development", // do not minify app.js for development
     target: "node",
@@ -40,12 +38,12 @@ function getServerConfig(): webpack.Configuration {
       extensions: [".js", ".jsx"], // TODO: support ".mjs", ".tsx", ".ts", ".json", ".wasm"
       alias: {
         // "@tmr/server": resolve(__dirname, "../../node_modules/@tmr/server/"),
-      }
+      },
     },
     externals: {
       // TODO use webpack-node-externals
       express: "commonjs express",
-      "@tmr/tmr": "commonjs @tmr/tmr"
+      "@tmr/tmr": "commonjs @tmr/tmr",
     },
     module: {
       rules: [
@@ -61,21 +59,10 @@ function getServerConfig(): webpack.Configuration {
     },
     resolveLoader: {
       alias: {
-        "babel-loader": resolve(__dirname, "../../node_modules/babel-loader/"),
+        "babel-loader": resolve(__dirname, "../../../node_modules/babel-loader/"),
       },
     },
   };
 }
 
-export function compileServer() {
-  console.log("Server Config", getServerConfig());
-  webpack(getServerConfig(), (err, stats) => {
-    if (err) {
-      console.log(err);
-    }
-    if (stats.hasErrors()) {
-      // Handle errors here
-    }
-    printErrorWarning(stats);
-  });
-}
+export default serverConfig;
