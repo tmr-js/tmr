@@ -1,4 +1,5 @@
 import * as http from 'http';
+import {renderToString} from "react-dom/server";
 
 type SendArguments = {
   req: http.IncomingMessage;
@@ -7,6 +8,6 @@ type SendArguments = {
 };
 
 export function send({req, res, component} : SendArguments) {
-    res.write("ok");
+    res.write(renderToString(component));
     res.end();
 }

@@ -4,7 +4,7 @@ const React = require("react");
 
 function handle(app) {
   app.get("/test", (req, res) => {
-    const component = <div>test</div>;
+    const component = <div>Hello <b>World</b></div>;
     tmr.send({ req, res, component });
   });
 }
