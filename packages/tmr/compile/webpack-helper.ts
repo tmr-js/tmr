@@ -11,7 +11,18 @@ function getServerConfig(): webpack.Configuration {
   const defaultLoader = {
     loader: "babel-loader",
     options: {
-      presets: [[require("@babel/preset-react"), { development: false }]],
+      presets: [
+        [
+          require("@babel/preset-react"),
+          {
+            // If classic runtime is no longer supported, we need
+            // to create our own babel-plugin-transform-react-jsx
+            runtime: "classic",
+            pragma: "tmr.createElement",
+            pragmaFrag: "tmr.Fragment",
+          },
+        ],
+      ],
     },
   };
   return {

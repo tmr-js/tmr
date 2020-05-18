@@ -1,3 +1,6 @@
+// TODO: Automatically add this in babel.
+const tmr = require("@tmr/tmr");
+
 function handle(app) {
   app.get("/test", (req, res) => {
     const component2 = <div>test</div>;

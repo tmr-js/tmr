@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "strict": true,
+      "module": "CommonJS",
+      "target": "ES2017",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "jsx": "react",
+      "outDir": "dist"
+    },
+    "include": ["**/*"],
+    "exclude": ["dist"]
+  }
+  
